@@ -1,0 +1,6 @@
+.DS_Store
+.envrc
+venv
+requirements.txt
+__pycache__
+escape_the_room-web
