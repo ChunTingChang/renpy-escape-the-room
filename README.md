@@ -1,6 +1,7 @@
 ### Free play online
 
 > click [here](https://initial-gt.herokuapp.com/index.html)
+>
 > *Note: supports only Safari browser. If you are using Chrome, please open the developer console before and refresh the page.*
 
 ### How I start this project
