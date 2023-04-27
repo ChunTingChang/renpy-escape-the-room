@@ -1,0 +1,101 @@
+﻿# 您可以在此編寫遊戲的腳本。
+
+# image命令可用於定義一個圖像。
+# eg. image eileen happy = "eileen_happy.png"
+
+
+define player_f = Character('？？？', color="#b7c3c7", image = 'player')
+
+# image side player = "images/character/player.png"
+
+image side player = "images/character/side_girl_worried.png"
+image side player fear = "images/character/side_girl_fear.png"
+
+define start_room = 1
+define start_scene = 5
+
+define scenes_viewed = [ ]
+
+# room_1
+
+define girl_paint_clicked_cnt = 0
+
+define room_1_photos_clicked_cnt = 0
+
+define room_1_table_clicked_cnt = 0
+
+define room_1_wall_shelf_clicked_cnt = 0
+
+define room_1_door_2_trigger = 0
+
+define room_1_door_3_trigger = 0
+
+define room_1_girl_paint_1_trigger = 0
+
+# room_2
+
+define room_2_wall_deco_1_clicked_cnt = 0
+
+define room_2_clothing_1_clicked_cnt = 0
+
+define room_2_clothing_2_clicked_cnt = 0
+
+define room_2_bag_1_clicked_cnt = 0
+
+define room_2_photos_2_clicked_cnt = 0
+
+define room_2_table_2_clicked_cnt = 0
+
+define room_2_box_1_clicked_cnt = 0
+
+define room_2_clothing_2_trigger = 0
+
+define room_2_box_1_trigger = 0
+
+define room_2_table_2_trigger = 0
+
+# room_3
+
+define room_3_mirror_1_clicked_cnt = 0
+
+define room_3_candle_1_clicked_cnt = 0
+
+define room_3_candle_2_clicked_cnt = 0
+
+define room_3_mirror_1_trigger = 0
+
+
+
+# $ config.window_auto_hide = ['call screen', 'scene'] #  'scene', 'call screen', 'menu', "say-centered"
+
+# define scene_2_clicked_cnt = 0
+
+label start:
+
+    $ renpy.scene()
+    $ renpy.show("room_%s_scene_%s" %(start_room, start_scene))
+    $ renpy.with_statement(fade)
+
+    player_f "....."
+
+    player_f "這裡是？"
+
+    player_f fear "（向前走了幾步）"
+
+    $ start_scene = 4
+
+    $ renpy.scene()
+    $ renpy.show("room_%s_scene_%s" %(start_room, start_scene))
+    $ renpy.with_statement(fade)
+
+    player_f "冷靜下來，想辦法出去吧。"
+
+    "請透過視窗下方箭頭切換畫面"
+
+    window hide
+
+    # call screen directions
+
+    call scene_non_trigger
+
+    # return

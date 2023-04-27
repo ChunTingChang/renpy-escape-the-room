@@ -1,0 +1,391 @@
+screen room_1_scene_1_buttons:
+
+    use directions
+
+    if (girl_paint_clicked_cnt > 1) & (room_1_photos_clicked_cnt > 0) & (room_1_table_clicked_cnt > 0):
+        imagebutton:
+            xpos 306 ypos 0 xanchor 0
+            auto "images/scene/room_1/object/scene_1_orig_shelf_%s.png"
+            action Jump("wall_shelf_highlight")
+
+    imagebutton:
+        # [placeholder] door_0, action to be added
+        xpos 0 ypos 400
+        auto "images/scene/room_1/object/placeholders/room_1_scene_1_door_0_%s.jpg"
+        action Jump("back_to_room_1")
+
+    imagebutton:
+        # [placeholder] girl_paint_1
+        xpos 940 ypos 100
+        auto "images/scene/room_1/object/placeholders/room_1_scene_1_girl_paint_1_%s.jpg"
+        action Jump("girl_paint_highlight")
+
+    imagebutton:
+        # [placeholder] table_1
+        xpos 1150 ypos 450
+        auto "images/scene/room_1/object/placeholders/room_1_scene_1_table_1_%s.jpg"
+        action Jump("room1_table_highlight")
+
+screen room_1_scene_2_buttons:
+
+    use directions
+
+    # if girl_paint_clicked_cnt <= 1:
+
+    imagebutton:
+        xpos 415 ypos 66
+        auto "images/scene/room_1/object/scene_2_girl_paint_highlight_%s.png"
+        action Jump("girl_paint_highlight")
+
+    imagebutton:
+        # [placeholder] table_1
+        xpos 650 ypos 350
+        auto "images/scene/room_1/object/placeholders/room_1_scene_2_table_1_%s.jpg"
+        action Jump("room1_table_highlight")
+
+    imagebutton:
+        # [placeholder] photos_1
+        xpos 1100 ypos 200
+        auto "images/scene/room_1/object/placeholders/room_1_scene_2_photos_1_%s.jpg"
+        action Jump("room1_photos_highlight")
+
+screen room_1_scene_3_buttons:
+
+    use directions
+
+    imagebutton:
+        xpos 797 ypos 168
+        auto "images/scene/room_1/object/scene_3_photos_%s.png"
+        action Jump("room1_photos_highlight")
+
+    imagebutton:
+        xpos 536 ypos 378
+        auto "images/scene/room_1/object/scene_3_table_%s.png"
+        action Jump("room1_table_highlight")
+
+    imagebutton:
+        # [placeholder] girl_paint_1
+        xpos 30 ypos 20
+        auto "images/scene/room_1/object/placeholders/room_1_scene_3_girl_paint_1_%s.jpg"
+        action Jump("girl_paint_highlight")
+
+screen room_1_scene_4_buttons:
+
+    use directions
+
+    imagebutton:
+        xpos 783 ypos 392
+        auto "images/scene/room_1/object/room_1_scene_4_door_%s.png"
+        action Jump("room1_door2")
+
+    imagebutton:
+        # [placeholder] table_1
+        xpos 170 ypos 400
+        auto "images/scene/room_1/object/placeholders/room_1_scene_4_table_1_%s.jpg"
+        action Jump("room1_table_highlight")
+
+    imagebutton:
+        # [placeholder] photos_1
+        xpos 320 ypos 150
+        auto "images/scene/room_1/object/placeholders/room_1_scene_4_photos_1_%s.jpg"
+        action Jump("room1_photos_highlight")
+
+screen room_1_scene_5_buttons:
+
+    use directions
+
+    imagebutton:
+        # [placeholder] door_2
+        xpos 600 ypos 350
+        auto "images/scene/room_1/object/placeholders/room_1_scene_5_door_2_%s.jpg"
+        action Jump("room1_door2")
+
+    imagebutton:
+        # [placeholder] door_3, action/label to be added
+        xpos 950 ypos 400
+        auto "images/scene/room_1/object/placeholders/room_1_scene_5_door_3_%s.jpg"
+        action Jump("room1_door3")
+
+screen directions:
+# https://www.youtube.com/watch?v=4O3uqLpvnKE
+    if start_room == 1:
+
+        if start_scene <> 1:
+
+            imagebutton:
+                xalign 0.2 yalign 0.9
+                auto "images/direction_button/left_button_%s.png"
+
+                # if start_scene == 2:
+                #     action [
+                #         ToggleVariable("start_scene", start_scene-1),
+                #         # ToggleVariable("scene_2_clicked_cnt", scene_2_clicked_cnt+1),
+                #         Jump("scene_non_trigger")
+                #         # AddToSet("scenes_viewed", scene_mapping[start_scene])
+                #         ]
+                # elif start_scene == 3:
+                #     action [ToggleVariable("start_scene", start_scene-1), Jump("scene_non_trigger")]
+                # else:
+                #     action [
+                #         ToggleVariable("start_scene", start_scene-1),
+                #         Jump("scene_non_trigger"),
+                #         # AddToSet("scenes_viewed", scene_mapping[start_scene])
+                #         ]
+
+                action [ToggleVariable("start_scene", start_scene-1), Jump("scene_non_trigger")]
+
+        if start_scene <> 5:
+
+            imagebutton:
+                xalign 0.8 yalign 0.9
+                auto "images/direction_button/right_button_%s.png"
+                action [ToggleVariable("start_scene", start_scene+1), Jump("scene_non_trigger")]
+
+    elif start_room == 2:
+
+        if start_scene <> 1:
+
+            imagebutton:
+                xalign 0.2 yalign 0.9
+                auto "images/direction_button/left_button_%s.png"
+                action [ToggleVariable("start_scene", start_scene-1), Jump("scene_non_trigger")]
+
+        if start_scene <> 4:
+
+            imagebutton:
+                xalign 0.8 yalign 0.9
+                auto "images/direction_button/right_button_%s.png"
+                action [ToggleVariable("start_scene", start_scene+1), Jump("scene_non_trigger")]
+    #
+    # elif start_room == 3:
+    #
+    #     if start_scene == 1:
+    #
+    #
+
+label room1_door2:
+
+    if (girl_paint_clicked_cnt > 0) & (room_1_wall_shelf_clicked_cnt > 1):
+
+        "門把可以轉動。"
+
+        $ room_1_door_2_trigger = 1
+
+        menu:
+
+            "是否進入房間？"
+
+            "進入房間":
+
+                $ start_room = 2
+                $ start_scene = 4
+
+                call scene_non_trigger
+
+            "再等等":
+
+                call scene_non_trigger
+
+    else:
+
+        "門已上鎖。"
+
+        call scene_non_trigger # from _call_scene_non_trigger
+
+    # hide window
+
+
+label room1_door3:
+
+    if (room_1_door_2_trigger == 1) & (room_2_table_2_trigger == 1):
+
+        "門把可以轉動。"
+
+        $ room_1_door_3_trigger = 1
+
+        menu:
+
+            "是否進入房間？"
+
+            "進入房間":
+
+                $ start_room = 3
+                $ start_scene = 1
+
+                call scene_non_trigger
+
+            "再等等":
+
+                call scene_non_trigger
+
+
+    else:
+
+        "門已上鎖。"
+
+    call scene_non_trigger # from _call_scene_non_trigger
+
+
+label room1_photos_highlight:
+
+    scene zoom_in_scene_3_photos with fade
+
+    "婚紗照。"
+
+    "似乎有些面熟？"
+
+    "沒什麼其他線索。"
+
+    # hide window
+
+    $ room_1_photos_clicked_cnt += 1
+
+    call scene_non_trigger
+
+label room1_table_highlight:
+
+    scene zoom_in_scene_3_table with fade
+
+    "十幾年前的雜誌。杯子裡空無一物。"
+
+    "沒什麼其他線索。"
+
+    # hide window
+
+    $ room_1_table_clicked_cnt += 1
+
+    call scene_non_trigger
+
+label wall_shelf_highlight:
+
+    if room_1_wall_shelf_clicked_cnt == 0:
+
+        scene zoom_in_scene_1 with fade
+
+        "傢俱擺飾品。"
+
+        "沒什麼其他線索。"
+
+    elif room_1_wall_shelf_clicked_cnt > 0:
+
+        scene zoom_in_scene_1_clicked with fade
+
+        "傢俱擺飾品之外，還多了一個時鐘。"
+
+        player_f "兩點半？和外頭掛鐘時間不同。是怎麼回事？"
+
+    # hide window
+
+    $ room_1_wall_shelf_clicked_cnt += 1
+
+    call scene_non_trigger from _call_scene_non_trigger
+
+label girl_paint_highlight:
+
+    if room_3_mirror_1_trigger == 1:
+
+        scene zoom_girl_paint with fade
+
+        player_f fear "這張畫像 ...."
+
+        player_f fear "原來從頭到尾，"
+
+        player_f fear "都是我嗎？"
+
+        $ room_1_girl_paint_1_trigger = 1
+
+    elif girl_paint_clicked_cnt == 0:
+
+        scene zoom_girl_paint with fade
+
+        "幼齡女孩的畫像。"
+
+        "沒什麼其他線索。"
+
+    else:
+
+        scene zoom_girl_paint_clicked with fade
+
+        "幼齡女孩的畫像。"
+
+        "畫像的膚色似乎和第一次看有些不同？"
+
+        player_f "看起來是燒燙傷導致的疤痕 ..."
+
+    # hide window
+
+    $ girl_paint_clicked_cnt += 1
+
+    call scene_non_trigger from _call_scene_non_trigger_1
+
+
+# label sit_at_scene_1_couch:
+#
+#     scene view_when_sit_at_1 with fade
+#
+#     pause 1.0
+#
+#     "坐在沙發上休息。"
+#
+#     "沒注意到什麼特別的。"
+#
+#     hide window
+#
+#     pause 1.0
+#
+#     call scene_non_trigger
+
+label scene_non_trigger:
+
+    $ renpy.scene()
+
+    # $ renpy.show("room_{}_scene_{}".format(start_room, start_scene)) -- not workable
+
+    $ renpy.show("room_%s_scene_%s" %(start_room, start_scene))
+
+    $ renpy.with_statement(fade)
+
+    # if start_room == 1:
+
+    $ renpy.call_screen("room_%s_scene_%s_buttons" % (start_room, start_scene))
+
+    # hide window
+
+        # elif  start_scene == 1:
+        #
+        #     call screen room_1_scene_1_buttons
+        #
+        # elif start_scene == 3:
+        #
+        #     call screen room_1_scene_3_buttons
+        #
+        # elif start_scene == 4:
+        #
+        #     call screen room_1_scene_4_buttons
+        #
+        # else:
+        #
+        #     call screen room_1_scene_5_buttons
+
+            # call screen directions
+
+    # elif start_room == 2:
+    #
+    #     if start_scene == 1:
+    #
+    #         call screen room_2_scene_1_buttons
+    #
+    #     else:
+    #
+            # call screen directions
+
+    # else:
+    #     call screen directions
+
+
+label back_to_room_1:
+
+    $ start_scene = 5
+    $ start_room = 1
+
+    call scene_non_trigger
